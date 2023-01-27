@@ -75,7 +75,19 @@ class Persona
         $this->codiceFiscale = $codiceFiscale;
     }
 
+    public function getPersonaHTML()
+    {
+        return "<b> Nome: </b>" . $this->getNome() . "<br>"
+            . "<b>Cognome: </b>" . $this->getCognome() . "<br>"
+            . "<b>Data di nascita: </b>" . $this->getDataDiNascita() . "<br>"
+            . "<b>Luogo di nascita: </b>" . $this->getLuogoDiNascita() . "<br>"
+            . "<b>Codice Fiscale: </b>" . $this->getCodiceFiscale();
+    }
 }
+
+//Print Persona
+$prova = new Persona("Mario", "Rossi", "1990-01-01", "Milano", "RSSMRA90A01F205Z");
+echo $prova->getPersonaHTML();
 
 class Stipendio
 {
