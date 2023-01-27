@@ -160,14 +160,51 @@ class Stipendio
 
 class Capo extends Persona
 {
-    private Stipendio $stipendio;
     private $dividendo;
     private $bonus;
+    public function __construct($nome, $cognome, $dataDiNascita, $luogoDiNascita, $codiceFiscale, $dividendo, $bonus)
+    {
+        parent::__construct($nome, $cognome, $dataDiNascita, $luogoDiNascita, $codiceFiscale);
+        $this->setDividendo($dividendo);
+        $this->setBonus($bonus);
+    }
+
+    public function getDividendo()
+    {
+        return $this->dividendo;
+    }
+    public function setDividendo($dividendo)
+    {
+        $this->dividendo = $dividendo;
+    }
+    public function getBonus()
+    {
+        return $this->bonus;
+    }
+    public function setBonus($bonus)
+    {
+        $this->bonus = $bonus;
+    }
+    public function getStipendioCapo()
+    {
+        return $this->getDividendo() * 12 + $this->getBonus();
+    }
+
+    public function getCapoHTML()
+    {
+        return parent::getPersonaHTML() . "<br>"
+            . "Stipendio Annuale: " . $this->getStipendioCapo() . "<br>"
+            . "Dividendo: " . $this->getDividendo() . "<br>"
+            . "Bonus: " . $this->getBonus() . "<br>";
+    }
+
 }
 
 class Impiegato extends Persona
 {
+    private Stipendio $stipendio;
     private $dataDiAssunzione;
+
 
 }
 
@@ -177,3 +214,6 @@ echo $prova->getPersonaHTML();
 
 $provastipendio = new Stipendio(1800, true, false);
 echo $provastipendio->getStipendioHTML();
+
+$provaCapo = new Capo("Gesualdo", "Ferrari", "1965-05-12", "Verona", "FRRGSS65B02F932V", 32000, 15000);
+echo $provaCapo->getCapoHTML();
