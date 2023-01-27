@@ -43,34 +43,34 @@ class Persona
     }
 
     //Variabile data di nascita
-    public function getDataDiNasciata()
+    public function getDataDiNascita()
     {
         return $this->dataDiNascita;
     }
 
-    public function setDataDiNasciata($dataDiNascita)
+    public function setDataDiNascita($dataDiNascita)
     {
         $this->dataDiNascita = $dataDiNascita;
     }
 
     //Variabile luogo di nascita
-    public function getLuogoDiNasciata()
+    public function getLuogoDiNascita()
     {
         return $this->luogoDiNascita;
     }
 
-    public function setLuogoDiNasciata($luogoDiNascita)
+    public function setLuogoDiNascita($luogoDiNascita)
     {
         $this->luogoDiNascita = $luogoDiNascita;
     }
 
     //Variabile codice fiscale
-    public function getCodiceFiscalle()
+    public function getCodiceFiscale()
     {
         return $this->codiceFiscale;
     }
 
-    public function setCodiceFiscalle($codiceFiscale)
+    public function setCodiceFiscale($codiceFiscale)
     {
         $this->codiceFiscale = $codiceFiscale;
     }
