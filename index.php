@@ -7,7 +7,14 @@ class Persona
     public $luogoDiNascita;
     public $codiceFiscale;
 
-
+    public function __construct($nome, $cognome, $dataDiNascita, $luogoDiNascita, $codiceFiscale)
+    {
+        $this->nome = $nome;
+        $this->cognome = $cognome;
+        $this->dataDiNascita = $dataDiNascita;
+        $this->luogoDiNascita = $luogoDiNascita;
+        $this->codiceFiscale = $codiceFiscale;
+    }
 }
 
 class Stipendio
