@@ -81,13 +81,9 @@ class Persona
             . "<b>Cognome: </b>" . $this->getCognome() . "<br>"
             . "<b>Data di nascita: </b>" . $this->getDataDiNascita() . "<br>"
             . "<b>Luogo di nascita: </b>" . $this->getLuogoDiNascita() . "<br>"
-            . "<b>Codice Fiscale: </b>" . $this->getCodiceFiscale();
+            . "<b>Codice Fiscale: </b>" . $this->getCodiceFiscale() . "<br>";
     }
 }
-
-//Print Persona
-$prova = new Persona("Mario", "Rossi", "1990-01-01", "Milano", "RSSMRA90A01F205Z");
-echo $prova->getPersonaHTML();
 
 class Stipendio
 {
@@ -153,10 +149,18 @@ class Stipendio
 
         return $res;
     }
+
+    public function getStipendioHTML()
+    {
+        return "<b> Stipendio: </b>" . $this->getMensile() . "<br>"
+            . "<b> Tredicesima: </b>" . ($this->getTredicesima() ? "si" : "no") . "<br>" // il "?" va a mettere un IF se ha la tredicesima o meno 
+            . "<b> Quattoridicesima: </b>" . ($this->getQuattordicesima() ? "si" : "no");
+    }
 }
 
 class Capo extends Persona
 {
+    private Stipendio $stipendio;
     private $dividendo;
     private $bonus;
 }
@@ -166,3 +170,10 @@ class Impiegato extends Persona
     private $dataDiAssunzione;
 
 }
+
+//Print Persona
+$prova = new Persona("Mario", "Rossi", "1990-01-01", "Milano", "RSSMRA90A01F205Z");
+echo $prova->getPersonaHTML();
+
+$provastipendio = new Stipendio(1800, true, false);
+echo $provastipendio->getStipendioHTML();
