@@ -154,7 +154,7 @@ class Stipendio
     {
         return "<b> Stipendio: </b>" . $this->getMensile() . "<br>"
             . "<b> Tredicesima: </b>" . ($this->getTredicesima() ? "si" : "no") . "<br>" // il "?" va a mettere un IF se ha la tredicesima o meno 
-            . "<b> Quattoridicesima: </b>" . ($this->getQuattordicesima() ? "si" : "no");
+            . "<b> Quattoridicesima: </b>" . ($this->getQuattordicesima() ? "si" : "no") . "<br>" . "<hr>";
     }
 }
 
@@ -205,15 +205,54 @@ class Impiegato extends Persona
     private Stipendio $stipendio;
     private $dataDiAssunzione;
 
+    public function __construct($nome, $cognome, $dataDiNascita, $luogoDiNascita, $codiceFiscale, Stipendio $stipendio, $dataDiAssunzione)
+    {
+        parent::__construct($nome, $cognome, $dataDiNascita, $luogoDiNascita, $codiceFiscale);
+        $this->setStipendio($stipendio);
+        $this->setDataDiAssunzione($dataDiAssunzione);
+    }
+
+    public function getStipendio()
+    {
+        return $this->stipendio;
+    }
+
+    public function setStipendio($stipendio)
+    {
+        $this->stipendio = $stipendio;
+    }
+
+    public function getDataDiAssunzione()
+    {
+        return $this->dataDiAssunzione;
+    }
+
+    public function setDataDiAssunzione($dataDiAssunzione)
+    {
+        $this->dataDiAssunzione = $dataDiAssunzione;
+    }
+
+    public function getSalarioAnnuale()
+    {
+
+        return $this->getStipendio()->getSalarioAnnuale();
+    }
+
+    public function getImpiegatoHTML()
+    {
+
+        return parent::getPersonaHTML() . "<br>"
+            . "Data di assunzione: " . $this->getDataDiAssunzione() . "<br>"
+            . $this->getStipendio()->getStipendioHTML();
+    }
+
+
 
 }
 
-//Print Persona
-$prova = new Persona("Mario", "Rossi", "1990-01-01", "Milano", "RSSMRA90A01F205Z");
-echo $prova->getPersonaHTML();
-
-$provastipendio = new Stipendio(1800, true, false);
-echo $provastipendio->getStipendioHTML();
+$stipendioImpiegato = new Stipendio(1800, true, false);
+$impiegato = new Impiegato("Kazuha", "Kaedehara", "2001-10-10", "Tokyo", "KDHKZH01R10E897T", $stipendioImpiegato, "2022-01-10");
+echo $impiegato->getImpiegatoHTML();
 
 $provaCapo = new Capo("Gesualdo", "Ferrari", "1965-05-12", "Verona", "FRRGSS65B02F932V", 32000, 15000);
 echo $provaCapo->getCapoHTML();
